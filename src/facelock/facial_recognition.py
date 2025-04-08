@@ -32,13 +32,22 @@ from insightface.app import FaceAnalysis
 import cv2
 import numpy as np
 from timeit import default_timer as timer
+import onnxruntime as ort
+import logging
+
 
 def initialize_face_model():
     
     """
     Function to initalize the package by downloading the required model
     """
-    
+    # Set the logging level to 'ERROR' to suppress warnings
+    # Set the logging level for ONNX Runtime to 'ERROR'
+    logging.basicConfig(level=logging.ERROR)
+
+    # OR you can also directly set the logger for ONNX Runtime
+    onnxruntime_logger = logging.getLogger('onnxruntime')
+    onnxruntime_logger.setLevel(logging.ERROR)
     app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
     app.prepare(ctx_id=0, det_size=(640, 640))
 
@@ -68,7 +77,12 @@ def get_authentication(path):
     Returns:
     - boolean representing whether or not the user reasonably matches given image.
     """
-    
+    # Set the logging level for ONNX Runtime to 'ERROR'
+    logging.basicConfig(level=logging.ERROR)
+
+    # OR you can also directly set the logger for ONNX Runtime
+    onnxruntime_logger = logging.getLogger('onnxruntime')
+    onnxruntime_logger.setLevel(logging.ERROR)
     app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
     app.prepare(ctx_id=0, det_size=(640, 640))
     
