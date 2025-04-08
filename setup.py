@@ -49,8 +49,7 @@ setup(
     python_requires=">=3.8",  # Specify Python version requirement
     install_requires=[  # Dependencies
         "onnxruntime",
-        "insightface",
-        "opencv-python"
+        "insightface"
     ],
     include_package_data=True,  # Ensure non-Python files (like README.md) are included
     zip_safe=False,  # Indicate if the package can be reliably used as a .egg file

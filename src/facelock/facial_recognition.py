@@ -82,7 +82,7 @@ def get_authentication(path):
     
     if not cap.isOpened():
         print("Error: Could not open webcam.")
-        exit()
+        return False
     
     # Initialize timer and variables for matching calculation
     t0 = timer()
