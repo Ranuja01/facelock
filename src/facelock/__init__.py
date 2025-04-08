@@ -29,7 +29,10 @@ SOFTWARE.
 """
 
 from .facial_recognition import get_authentication, initialize_face_model
+import onnxruntime as ort
+
+# Set the logging level to 'ERROR' to suppress warnings
+ort.set_default_logger_severity(3)  # 0: Verbose, 1: Info, 2: Warning, 3: Error, 4: Fatal
 
 __all__ = ["get_authentication", "initialize_face_model"]
-
 initialize_face_model()
