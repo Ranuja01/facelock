@@ -27,6 +27,14 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
 SOFTWARE.
 """
+import logging
+
+# Set the logging level to ERROR to suppress lower severity logs
+logging.basicConfig(level=logging.ERROR)
+
+# Optionally, configure specific loggers for external libraries (if needed)
+logging.getLogger('insightface').setLevel(logging.ERROR)
+logging.getLogger('onnxruntime').setLevel(logging.ERROR)
 
 from .facial_recognition import get_authentication, initialize_face_model
 
