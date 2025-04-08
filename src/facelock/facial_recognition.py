@@ -109,7 +109,6 @@ def get_authentication(path):
     
     # Release resources
     cap.release()
-    cv2.destroyAllWindows()
     
     # Typical threshold for matching
     if similarity_total/frame_count > 0.6:
