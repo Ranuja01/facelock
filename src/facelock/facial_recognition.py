@@ -34,17 +34,45 @@ import numpy as np
 from timeit import default_timer as timer
 
 def initialize_face_model():
+    
+    """
+    Function to initalize the package by downloading the required model
+    """
+    
     app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
     app.prepare(ctx_id=0, det_size=(640, 640))
 
 def cosine_similarity(a, b):
+    
+    """
+    Function to return the cosine similarity between two vectors
+
+    Parameters:
+    - a: first vector of embeddings
+    - b: second vector of embeddings
+    
+    Returns:
+    - float representing the cosine similarity
+    """
+    
     return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
 
 def get_authentication(path):
     
+    """
+    Function that performs the facial authentication given an image of the user
+
+    Parameters:
+    - path: The path to the stored image of the user
+    
+    Returns:
+    - boolean representing whether or not the user reasonably matches given image.
+    """
+    
     app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
     app.prepare(ctx_id=0, det_size=(640, 640))
     
+    # Acquires the face embedding vector from the image
     img1 = cv2.imread(path)
     faces1 = app.get(img1)
     stored_image_embedding = faces1[0].embedding
@@ -55,24 +83,27 @@ def get_authentication(path):
     if not cap.isOpened():
         print("Error: Could not open webcam.")
         exit()
-        
+    
+    # Initialize timer and variables for matching calculation
     t0 = timer()
     frame_count = 0
     similarity_total = 0
     
+    # Scan for 2.5 seconds to acquire average similarity
     while (timer() - t0) < 2.5:
         ret, frame = cap.read()
         
         if not ret:
             break
         
+        # Acquire embeddings for the face appearing on the webcam
         faces = app.get(frame)
         
         for face in faces:
-            current_embedding = face.embedding
-    
-            similarity = cosine_similarity(stored_image_embedding, current_embedding)
             
+            # Acquire total similarity and frame count for average calculation
+            current_embedding = face.embedding            
+            similarity = cosine_similarity(stored_image_embedding, current_embedding)            
             similarity_total += similarity
             frame_count += 1
     
@@ -85,4 +116,3 @@ def get_authentication(path):
         # Matches
         return True        
     return False
-
