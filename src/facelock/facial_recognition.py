@@ -33,7 +33,12 @@ import cv2
 import numpy as np
 from timeit import default_timer as timer
 import onnxruntime as ort
-import logging
+import os
+from contextlib import redirect_stdout, redirect_stderr
+
+# Set ONNX Runtime log severity (affects only ONNX Runtime messages)
+ort.set_default_logger_severity(3)
+
 
 
 def initialize_face_model():
@@ -41,15 +46,10 @@ def initialize_face_model():
     """
     Function to initalize the package by downloading the required model
     """
-    # Set the logging level to 'ERROR' to suppress warnings
-    # Set the logging level for ONNX Runtime to 'ERROR'
-    logging.basicConfig(level=logging.ERROR)
-
-    # OR you can also directly set the logger for ONNX Runtime
-    onnxruntime_logger = logging.getLogger('onnxruntime')
-    onnxruntime_logger.setLevel(logging.ERROR)
-    app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
-    app.prepare(ctx_id=0, det_size=(640, 640))
+    # Create a no-op context by redirecting stdout and stderr
+    with open(os.devnull, "w") as f, redirect_stdout(f), redirect_stderr(f):
+        app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
+        app.prepare(ctx_id=0, det_size=(640, 640))
 
 def cosine_similarity(a, b):
     
@@ -77,14 +77,10 @@ def get_authentication(path):
     Returns:
     - boolean representing whether or not the user reasonably matches given image.
     """
-    # Set the logging level for ONNX Runtime to 'ERROR'
-    logging.basicConfig(level=logging.ERROR)
-
-    # OR you can also directly set the logger for ONNX Runtime
-    onnxruntime_logger = logging.getLogger('onnxruntime')
-    onnxruntime_logger.setLevel(logging.ERROR)
-    app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
-    app.prepare(ctx_id=0, det_size=(640, 640))
+    # Create a no-op context by redirecting stdout and stderr
+    with open(os.devnull, "w") as f, redirect_stdout(f), redirect_stderr(f):
+        app = FaceAnalysis(allowed_modules=['detection', 'recognition'])
+        app.prepare(ctx_id=0, det_size=(640, 640))
     
     # Acquires the face embedding vector from the image
     img1 = cv2.imread(path)
