@@ -39,8 +39,6 @@ from contextlib import redirect_stdout, redirect_stderr
 # Set ONNX Runtime log severity (affects only ONNX Runtime messages)
 ort.set_default_logger_severity(3)
 
-
-
 def initialize_face_model():
     
     """
