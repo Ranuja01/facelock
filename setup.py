@@ -32,7 +32,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="facelock",  # Package name
-    version="0.1.0",  # Version number
+    version="0.1.1",  # Version number
     author="Ranuja Pinnaduwage",
     author_email="Ranuja.Pinnaduwage@gmail.com",
     description="A plug-and-play facial recognition package in Python",  # Package description
@@ -45,6 +45,11 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",  # Use MIT License
         "Operating System :: OS Independent",
+        "Intended Audience :: Developers",
+        "Topic :: Scientific/Engineering",
+        "Topic :: Scientific/Engineering :: Artificial Intelligence",
+        "Topic :: Scientific/Engineering :: Image Processing",
+        "Topic :: Scientific/Engineering :: Image Recognition",
     ],
     python_requires=">=3.8",  # Specify Python version requirement
     install_requires=[  # Dependencies
