@@ -8,7 +8,43 @@ Facelock is a plug-and-play facial recognition package for Python, designed for 
 Ensure you have Python 3.8 or greater installed on your system along with an udpated version of pip. This model downloads the necessary python packages that are required including onnxruntime, insightface and opencv-python-headless, but ensure that they are the most updated versions. **Note:** If you already have opencv-python installed, this may conflict with opencv-python-headless. In order to use this package, uninstall opencv-python. If you already have an older version of any of these packages, installing this package may not update them. If facelock doesn't work, you should look to first upgrade the aforementioned packages to ensure they work with eachother. 
 
 ## Download
-To download this package, use the following instructions:
+**Insightface requires a C++ compiler to operate, please use the following instructions to acquire on first:**
+### Windows  
+- Download and install **Microsoft Visual C++ Build Tools 2022** or later from:  
+  [https://visualstudio.microsoft.com/visual-cpp-build-tools/](https://visualstudio.microsoft.com/visual-cpp-build-tools/)  
+- Ensure you select the **C++ CMake tools for Windows** and **MSVC compiler** during installation.
+- To verify you have correctly installed the C++ compiler run this in the Developer Command Prompt (not the regular command prompt):
+  ```sh
+  cl
+  ```
+- *Note* that simply installing MSVC build tools may not initialize your system properly. You may have to set environment
+  variables or update your path with the cl.exe compiler.
+### Linux  
+- Install the necessary C++ compiler and build tools:
+  - For Ubuntu: 
+  ```sh
+  sudo apt update && sudo apt install build-essential
+  ```
+  - For Fedora:
+  ```sh
+  sudo dnf install gcc-c++ make
+  ```
+- To verify you have correctly installed the C++ compiler run this in a terminal:
+  ```sh
+  g++ --version 
+  ```
+### For MacOS
+- Install Apple's command-line developer tools (includes clang for C++):
+  
+  ```sh
+  xcode-select --install
+  ```
+- To verify you have correctly installed the C++ compiler run this in a terminal:
+  ```sh
+  g++ --version 
+  ```
+  
+**To download this package, use the following instructions:**
   ```sh
   pip install facelock
   ```
