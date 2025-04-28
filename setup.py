@@ -53,7 +53,6 @@ setup(
     ],
     python_requires=">=3.8",  # Specify Python version requirement
     install_requires=[  # Dependencies
-        "onnxruntime",
         "insightface"
     ],
     include_package_data=True,  # Ensure non-Python files (like README.md) are included
