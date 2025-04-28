@@ -8,7 +8,10 @@ Facelock is a plug-and-play facial recognition package for Python, designed for 
 Ensure you have Python 3.8 or greater installed on your system along with an udpated version of pip. This model downloads the necessary python packages that are required including onnxruntime, insightface and opencv-python-headless, but ensure that they are the most updated versions. **Note:** If you already have opencv-python installed, this may conflict with opencv-python-headless. In order to use this package, uninstall opencv-python. If you already have an older version of any of these packages, installing this package may not update them. If facelock doesn't work, you should look to first upgrade the aforementioned packages to ensure they work with eachother. 
 
 ## Download
-**Insightface requires a C++ compiler to operate, please use the following instructions to acquire on first:**
+**This package currently requires an Anaconda Python distribution due to internal dependencies that install and use ONNX.**
+
+**InsightFace, one of the core dependencies, requires a C++ compiler to operate properly.
+Please make sure you have a C++ compiler installed on your system before proceeding.:**
 ### Windows  
 - Download and install **Microsoft Visual C++ Build Tools 2022** or later from:  
   [https://visualstudio.microsoft.com/visual-cpp-build-tools/](https://visualstudio.microsoft.com/visual-cpp-build-tools/)  
