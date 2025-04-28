@@ -32,12 +32,8 @@ from insightface.app import FaceAnalysis
 import cv2
 import numpy as np
 from timeit import default_timer as timer
-import onnxruntime as ort
 import os
 from contextlib import redirect_stdout, redirect_stderr
-
-# Set ONNX Runtime log severity (affects only ONNX Runtime messages)
-ort.set_default_logger_severity(3)
 
 def initialize_face_model():
     
