@@ -32,7 +32,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="facelock",  # Package name
-    version="0.1.1",  # Version number
+    version="0.1.2",  # Version number
     author="Ranuja Pinnaduwage",
     author_email="Ranuja.Pinnaduwage@gmail.com",
     description="A plug-and-play facial recognition package in Python",  # Package description
